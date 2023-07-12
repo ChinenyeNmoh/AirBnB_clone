@@ -1,6 +1,4 @@
-#!/usr/bin/python3
-
-"""An interactive shell?"""
+#!/usr/bin/env python3
 
 import cmd
 import re
