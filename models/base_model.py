@@ -2,7 +2,7 @@
 """base_model.py module"""
 import uuid
 from datetime import datetime
-import models
+from models import storage
 
 
 class BaseModel():
@@ -42,11 +42,11 @@ class BaseModel():
             self.updated_at = datetime.now()
 
             # calling method new(self) on storage (task5).
-            models.storage.new(self)
+            storage.new(self)
     def save(self):
         """Update updated_at with the current datetime."""
         self.updated_at = datetime.today()
-        models.storage.save()
+        storage.save()
 
     def to_dict(self):
         """Return the dictionary of the BaseModel instance.
