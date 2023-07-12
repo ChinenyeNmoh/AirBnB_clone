@@ -33,11 +33,11 @@ class HBNBCommand(cmd.Cmd):
            print("** class name missing **")
         else:
             try:
-                 new_i = eval(line)()
-                 new_i.save()
-                 print(new_i.id)
+                new_i = eval(line)()
+                new_i.save()
+                print(new_i.id)
             except NameError:
-                 print("** class doesn't exist **")
+                print("** class doesn't exist **")
      
     def do_show(self, line):
         """Prints the string representation of an instance"""
@@ -48,16 +48,16 @@ class HBNBCommand(cmd.Cmd):
             try:
                 cls_name = args[0]
                 if cls_name not in storage.classes():
-                    print("** class doesn't exist **")
+                   print("** class doesn't exist **")
                 elif len(args) < 2:
-                    print("** instance id missing **")
+                   print("** instance id missing **")
                 else:
-                    instance_id = args[1]
-                    key = "{}.{}".format(cls_name, instance_id)
-                    if key in storage.all():
-                        print(storage.all()[key])
-                    else:
-                        print("** no instance found **")
+                   instance_id = args[1]
+                   key = "{}.{}".format(cls_name, instance_id)
+                   if key in storage.all():
+                      print(storage.all()[key])
+                   else:
+                       print("** no instance found **")
             except Exception:
                 pass
 
@@ -89,17 +89,17 @@ class HBNBCommand(cmd.Cmd):
         args = line.split()
         obj_list = []
         if not args:
-            for key in storage.all().keys():
-                obj_list.append(str(storage.all()[key]))
+            for key in storage.all().values():
+                obj_list.append(str(key))
         else:
             try:
                 cls_name = args[0]
                 if cls_name not in storage.classes():
                     print("** class doesn't exist **")
                 else:
-                    for key in storage.all().keys():
-                        if key.split('.')[0] == cls_name:
-                            obj_list.append(str(storage.all()[key]))
+                    for key in storage.all().values():
+                        if isinstance(key, storage.classes()[cls_name]):
+                            obj_list.append(str(key))
             except Exception:
                 pass
         print(obj_list)
