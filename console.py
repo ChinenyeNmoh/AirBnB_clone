@@ -51,14 +51,12 @@ class HBNBCommand(cmd.Cmd):
         """Creates a new instances of a class"""
         if line:
             try:
-<<<<<<< HEAD
                 new_i = eval(line)()
                 new_i.save()
                 print(new_i.id)
             except NameError:
                 print("** class doesn't exist **")
-     
-=======
+
                 glo_cls = globals().get(line, None)
                 obj = glo_cls()
                 obj.save()
@@ -68,7 +66,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class name missing **")
 
->>>>>>> f998e01cba9c1e39e84d74cb3a93a2463cf59082
     def do_show(self, line):
         """print <class name> <id>"""
         arr = line.split()
@@ -80,7 +77,6 @@ class HBNBCommand(cmd.Cmd):
         elif len(arr) < 2:
             print("** instance id missing **")
         else:
-<<<<<<< HEAD
             try:
                 cls_name = args[0]
                 if cls_name not in storage.classes():
@@ -96,13 +92,11 @@ class HBNBCommand(cmd.Cmd):
                        print("** no instance found **")
             except Exception:
                 pass
-=======
             new_str = f"{arr[0]}.{arr[1]}"
             if new_str not in storage.all():
                 print("** no instance found **")
             else:
                 print(storage.all()[new_str])
->>>>>>> f998e01cba9c1e39e84d74cb3a93a2463cf59082
 
     def do_destroy(self, line):
         """
@@ -126,7 +120,6 @@ class HBNBCommand(cmd.Cmd):
 
 
     def do_all(self, line):
-<<<<<<< HEAD
         """Prints all string representations of instances"""
         args = line.split()
         obj_list = []
@@ -145,7 +138,6 @@ class HBNBCommand(cmd.Cmd):
             except Exception:
                 pass
         print(obj_list)
-=======
         """ Print all instances in string representation """
         obj = []
         if line == "":
@@ -160,7 +152,6 @@ class HBNBCommand(cmd.Cmd):
                     if split_letter[0] == state[0]:
                         obj.append(str(value))
                 print(obj)
->>>>>>> f998e01cba9c1e39e84d74cb3a93a2463cf59082
 
     def do_update(self, line):
         """Update a class instance of a given id by adding or updating
