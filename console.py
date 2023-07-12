@@ -54,12 +54,8 @@ class HBNBCommand(cmd.Cmd):
                 print(new_i.id)
             except NameError:
                 print("** class doesn't exist **")
-<<<<<<< HEAD
-=======
-
->>>>>>> 8da030c6acf04d2438e4624cd9812fc2437e72fd
-                glo_cls = globals().get(line, None)
-                obj = glo_cls()
+                _globe = globals().get(line, None)
+                obj = _globe()
                 obj.save()
                 print(obj.id)  # print the id
             except Exception:
@@ -93,10 +89,7 @@ class HBNBCommand(cmd.Cmd):
                        print("** no instance found **")
             except Exception:
                 pass
-<<<<<<< HEAD
 
-=======
->>>>>>> 8da030c6acf04d2438e4624cd9812fc2437e72fd
             new_str = f"{arr[0]}.{arr[1]}"
             if new_str not in storage.all():
                 print("** no instance found **")
