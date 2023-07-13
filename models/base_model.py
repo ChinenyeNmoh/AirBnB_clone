@@ -43,6 +43,7 @@ class BaseModel():
 
             # calling method new(self) on storage (task5).
             storage.new(self)
+
     def save(self):
         """Update updated_at with the current datetime."""
         self.updated_at = datetime.today()
@@ -61,4 +62,7 @@ class BaseModel():
 
     def __str__(self):
         """print str representation of the BaseModel instance."""
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(
+                                self.__class__.__name__,
+                                self.id, self.__dict__
+                                )
