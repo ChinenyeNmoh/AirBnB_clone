@@ -178,13 +178,17 @@ class HBNBCommand(cmd.Cmd):
 
         if Method == 'all':
             return self.do_all(cmd)
-        elif Method == 'count':
+
+        if Method == 'count':
             return self.do_count(cmd)
-        elif Method == 'show':
+
+        if Method == 'show':
             return self.do_show(cmd)
-        elif Method == 'destroy':
+        
+        if Method == 'destroy':
             return self.do_destroy(cmd)
-        elif Method == 'update':
+        
+        if Method == 'update':
             return self.do_update(cmd)
 
 
