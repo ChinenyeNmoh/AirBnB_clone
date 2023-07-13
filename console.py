@@ -49,15 +49,10 @@ class HBNBCommand(cmd.Cmd):
         """Creates a new instances of a class"""
         if line:
             try:
-                new_i = eval(line)()
-                new_i.save()
-                print(new_i.id)
-            except NameError:
-                print("** class doesn't exist **")
                 _globe = globals().get(line, None)
                 obj = _globe()
                 obj.save()
-                print(obj.id)  # print the id
+                print(obj.id)
             except Exception:
                 print("** class doesn't exist **")
         else:
@@ -74,27 +69,17 @@ class HBNBCommand(cmd.Cmd):
         elif len(arr) < 2:
             print("** instance id missing **")
         else:
-            try:
-                cls_name = args[0]
-                if cls_name not in storage.classes():
-                    print("** class doesn't exist **")
-                elif len(args) < 2:
-                    print("** instance id missing **")
-                else:
-                    instance_id = args[1]
-                    key = "{}.{}".format(cls_name, instance_id)
-                    if key in storage.all():
-                        print(storage.all()[key])
-                    else:
-                        print("** no instance found **")
-            except Exception:
-                pass
-
-            new_str = f"{arr[0]}.{arr[1]}"
-            if new_str not in storage.all():
+            new_s = f"{arr[0]}.{arr[1]}"
+            if new_s not in storage.all():
                 print("** no instance found **")
             else:
-                print(storage.all()[new_str])
+                print(storage.all()[new_s])
+
+            new_s = f"{arr[0]}.{arr[1]}"
+            if new_s not in storage.all():
+                print("** no instance found **")
+            else:
+                print(storage.all()[new_s])
 
     def do_destroy(self, line):
         """
@@ -116,26 +101,8 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
 
     def do_all(self, line):
-        """Prints all string representations of instances"""
-        args = line.split()
-        obj_list = []
-        if not args:
-            for key in storage.all().values():
-                obj_list.append(str(key))
-        else:
-            try:
-                cls_name = args[0]
-                if cls_name not in storage.classes():
-                    print("** class doesn't exist **")
-                else:
-                    for key in storage.all().values():
-                        if isinstance(key, storage.classes()[cls_name]):
-                            obj_list.append(str(key))
-            except Exception:
-                pass
-        print(obj_list)
         """ Print all instances in string representation """
-        obj = []
+        objects = []
         if line == "":
             print([str(value) for key, value in storage.all().items()])
         else:
@@ -144,10 +111,10 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
             else:
                 for key, value in storage.all().items():
-                    split_letter = key.split(".")
-                    if split_letter[0] == state[0]:
-                        obj.append(str(value))
-                print(obj)
+                    split_class = key.split(".")
+                    if split_class[0] == state[0]:
+                        objects.append(str(value))
+                print(objects)
 
     def do_update(self, line):
         """Update a class instance of a given id by adding or updating
