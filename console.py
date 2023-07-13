@@ -106,13 +106,13 @@ class HBNBCommand(cmd.Cmd):
         if line == "":
             print([str(value) for key, value in storage.all().items()])
         else:
-            state = line.split(" ")[0]
-            if state not in class_home:
+            class_name = line.split(" ")[0]
+            if class_name not in class_home:
                 print("** class doesn't exist **")
             else:
                 for key, value in storage.all().items():
                     split_class = key.split(".")
-                    if isinstance(value, class_home[state]):
+                    if isinstance(value, class_home[class_name]):
                         objects.append(str(value))
                 print(objects)
 
