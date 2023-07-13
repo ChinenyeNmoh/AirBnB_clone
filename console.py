@@ -164,8 +164,8 @@ class HBNBCommand(cmd.Cmd):
             return
 
         Pattern = r"^([A-Za-z]+)\.([a-z]+)([^(]*)\)"
-        params_pattern = r"""^"([^"]+)"(?:,\s*(?:"([^"]+)"|(\{[^}]+\}))
-                                (?:,\s*(?:("?[^"]+"?)))?)?"""
+        params_pattern = r'^"([^"]+)"(?:,\s*(?:"([^"]+)"|\{[^}]+\}))?' \
+                r'(?:,\s*(?:"[^"]*"?)?)?$'
         same = re.match(Pattern, line)
         if not same:
             super().default(line)
