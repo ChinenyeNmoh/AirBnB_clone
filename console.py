@@ -77,16 +77,16 @@ class HBNBCommand(cmd.Cmd):
             try:
                 cls_name = args[0]
                 if cls_name not in storage.classes():
-                   print("** class doesn't exist **")
+                    print("** class doesn't exist **")
                 elif len(args) < 2:
-                   print("** instance id missing **")
+                    print("** instance id missing **")
                 else:
-                   instance_id = args[1]
-                   key = "{}.{}".format(cls_name, instance_id)
-                   if key in storage.all():
-                      print(storage.all()[key])
-                   else:
-                       print("** no instance found **")
+                    instance_id = args[1]
+                    key = "{}.{}".format(cls_name, instance_id)
+                    if key in storage.all():
+                        print(storage.all()[key])
+                    else:
+                        print("** no instance found **")
             except Exception:
                 pass
 
@@ -98,8 +98,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, line):
         """
-        Create Destroy command deletes an instance based on the class name 
-        and id
+        Create Destroy command deletes an instance based on the class name.
         """
         arr = line.split()
         if len(arr) < 1:
@@ -115,7 +114,6 @@ class HBNBCommand(cmd.Cmd):
             else:
                 storage.all().pop(new_str)
                 storage.save()
-
 
     def do_all(self, line):
         """Prints all string representations of instances"""
@@ -198,8 +196,9 @@ class HBNBCommand(cmd.Cmd):
         if line is None:
             return
 
-        Pattern = "^([A-Za-z]+)\.([a-z]+)\(([^(]*)\)"
-        params_pattern = """^"([^"]+)"(?:,\s*(?:"([^"]+)"|(\{[^}]+\}))(?:,\s*(?:("?[^"]+"?)))?)?"""
+        Pattern = r"^([A-Za-z]+)\.([a-z]+)([^(]*)\)"
+        params_pattern = r"""^"([^"]+)"(?:,\s*(?:"([^"]+)"|(\{[^}]+\}))
+                                (?:,\s*(?:("?[^"]+"?)))?)?"""
         same = re.match(Pattern, line)
         if not same:
             super().default(line)
