@@ -2,6 +2,7 @@
 """file_storage.py module"""
 import json
 
+
 class FileStorage:
     """defined a class to serialize and
     deserialize json
@@ -15,6 +16,7 @@ class FileStorage:
         """
 
         return FileStorage.__objects
+
     def new(self, obj):
         """
         public instance method that sets in __objects
@@ -25,7 +27,10 @@ class FileStorage:
         key [str] -- key format generated.
         """
         if obj:
-            FileStorage.__objects["{}.{}".format(obj.__class__.__name__, obj.id)] = obj
+            FileStorage.__objects[
+                "{}.{}".format(obj.__class__.__name__, obj.id)
+                ] = obj
+
     def save(self):
         """
         public instance method that serializes __objects
@@ -40,6 +45,7 @@ class FileStorage:
             my_dict[key] = value.to_dict()
         with open(FileStorage.__file_path, "w", encoding="utf-8") as files:
             json.dump(my_dict, files)
+
     def reload(self):
         """
         public instance method that deserializes a JSON
