@@ -7,7 +7,7 @@ from models.base_model import BaseModel
 class User(BaseModel):
     """
     Blueprint for all User
-    """    
+    """
     email = ""
     password = ""
     first_name = ""
